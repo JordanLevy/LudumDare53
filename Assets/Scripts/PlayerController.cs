@@ -45,12 +45,9 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Speed", 0.5f);
         }
 
-        if(Mathf.Abs(horizontal) > 0.01){
-            vertical *= 0.5f;
+        if(Mathf.Abs(horizontal) > 0.01 && Mathf.Abs(vertical) < 0.01){
             vertical = Mathf.Abs(horizontal) * Mathf.Sign(vertical);
-            if(Mathf.Sign(vertical) < 0){
-                horizontal = -horizontal;
-            }
+            horizontal *= Mathf.Sign(vertical);
         }
 
         Vector3 velocity = orientation.forward * vertical * walkSpeed;
